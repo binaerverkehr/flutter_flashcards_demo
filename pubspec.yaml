@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   # widgets
-  flip_card: ^0.7.0
   dots_indicator: ^3.0.0
   # state management
   flutter_riverpod: ^2.4.10
@@ -23,8 +22,6 @@ dependencies:
   # database
   isar: ^4.0.0-dev.14
   isar_flutter_libs: ^4.0.0-dev.14
-  # shared preferences
-  shared_preferences: ^2.2.2
   
 
 dev_dependencies:
