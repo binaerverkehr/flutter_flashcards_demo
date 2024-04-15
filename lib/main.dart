@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lernkarten_app_test/core/common/app_theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Flashcards Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const Placeholder(),
     );
   }
