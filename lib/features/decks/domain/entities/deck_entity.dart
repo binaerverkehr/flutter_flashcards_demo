@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'deck_entity.freezed.dart';
 
-@Freezed(fromJson: false, toJson: false, copyWith: false, equal: true)
+@Freezed(copyWith: false, equal: true)
 class DeckEntity with _$DeckEntity {
   factory DeckEntity({
     required int id,
