@@ -21,7 +21,7 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
 
   @override
   void initState() {
-    // Initialize the deck
+    // Initialize the deck name controller and the list of cards
     _deckNameController = TextEditingController(text: "");
     _cards = [];
 
