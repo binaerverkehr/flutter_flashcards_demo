@@ -183,7 +183,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                               children: [
                                 TextFormField(
                                   controller: frontControllers[index],
-                                  //initialValue: card.front,
                                   decoration: InputDecoration(
                                     focusColor: frontTextIsEmpty ? Colors.red : Colors.blue,
                                     labelText: 'Enter front side text',
@@ -210,7 +209,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                                 const SizedBox(height: 8.0),
                                 TextFormField(
                                   controller: backControllers[index],
-                                  //initialValue: card.back,
                                   decoration: InputDecoration(
                                     focusColor: backTextIsEmpty ? Colors.red : Colors.blue,
                                     labelText: 'Enter back side text',
@@ -232,8 +230,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                                     setState(() {
                                       backControllers[index].text = value;
                                     });
-
-                                    //debugPrint("Back: ${backControllers[index].text}");
                                   },
                                 ),
                               ],
@@ -264,7 +260,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
           ],
         ),
       ),
-      // Add a new expansion tile to add a new card
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
