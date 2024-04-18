@@ -12,48 +12,26 @@ class DecksListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Decks'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
         child: Column(
           children: [
-            _buildGreetingText(),
-            const SizedBox(height: 20),
-            const Expanded(
-              child: DecksGrid(),
+            Row(
+              children: [
+                Text(' Welcome ', style: TextStyle(fontSize: 32)),
+                Text("User", style: TextStyle(fontSize: 32, color: Colors.purple, fontWeight: FontWeight.bold)),
+              ],
             ),
+            Row(
+              children: [
+                Text(' to your flashcard decks!', style: TextStyle(fontSize: 32)),
+              ],
+            ),
+            SizedBox(height: 20),
+            Expanded(child: DecksGrid()),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildGreetingText() {
-    return const Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              ' Welcome ',
-              style: TextStyle(
-                fontSize: 32,
-              ),
-            ),
-            Text(
-              "User",
-              style: TextStyle(
-                fontSize: 32,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(' to your flashcard decks!', style: TextStyle(fontSize: 32)),
-          ],
-        ),
-      ],
     );
   }
 }
