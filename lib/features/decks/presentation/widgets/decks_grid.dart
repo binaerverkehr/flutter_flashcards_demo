@@ -28,10 +28,7 @@ class DecksGrid extends StatelessWidget {
               child: const Card(
                 elevation: 0,
                 child: Center(
-                  child: Icon(
-                    Icons.add,
-                    size: 64,
-                  ),
+                  child: Icon(Icons.add, size: 64),
                 ),
               ),
             ),
