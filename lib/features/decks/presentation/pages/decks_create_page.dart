@@ -69,11 +69,13 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                   const SnackBar(content: Text('The deck must have a name')),
                 );
               } else {
-                // Create list of cards from the controllers
+                // Create an empty list of cards
                 final cards = <CardEntity>[];
 
+                // Get the id for the new deck
                 final newDeckId = kTestDeckList.length + 1;
 
+                // Add the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
                   final cardEntity = CardEntity(
                     deckId: newDeckId,
@@ -203,8 +205,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                                     setState(() {
                                       frontControllers[index].text = value;
                                     });
-
-                                    //debugPrint("Front: ${frontControllers[index].text}");
                                   },
                                 ),
                                 const SizedBox(height: 8.0),
