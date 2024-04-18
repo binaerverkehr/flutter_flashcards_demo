@@ -24,8 +24,9 @@ class _DecksEditPageState extends State<DecksEditPage> {
 
   @override
   void initState() {
-    // Initialize the deck
+    // Initialize the deck name controller with the deck name
     _deckNameController = TextEditingController(text: widget.deck.name);
+    // Initialize the cards with the cards from the deck
     _cards = [...widget.deck.cards];
 
     // Initialize a list of controllers for the front and back of the cards
@@ -72,12 +73,13 @@ class _DecksEditPageState extends State<DecksEditPage> {
                   const SnackBar(content: Text('The deck must have a name')),
                 );
               } else {
-                // Create list of cards from the controllers
+                // Create a empty list of cards
                 final cards = <CardEntity>[];
 
-                // Use same DeckId
+                // Use same deckId
                 final deckId = widget.deck.id;
 
+                // Add all the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
                   final cardEntity = CardEntity(
                     deckId: deckId,
@@ -185,7 +187,6 @@ class _DecksEditPageState extends State<DecksEditPage> {
                               children: [
                                 TextFormField(
                                   controller: frontControllers[index],
-                                  //initialValue: card.front,
                                   decoration: InputDecoration(
                                     focusColor: frontTextIsEmpty ? Colors.red : Colors.blue,
                                     labelText: 'Enter front side text',
@@ -207,14 +208,11 @@ class _DecksEditPageState extends State<DecksEditPage> {
                                     setState(() {
                                       frontControllers[index].text = value;
                                     });
-
-                                    //debugPrint("Front: ${frontControllers[index].text}");
                                   },
                                 ),
                                 const SizedBox(height: 8.0),
                                 TextFormField(
                                   controller: backControllers[index],
-                                  //initialValue: card.back,
                                   decoration: InputDecoration(
                                     focusColor: backTextIsEmpty ? Colors.red : Colors.blue,
                                     labelText: 'Enter back side text',
@@ -266,7 +264,6 @@ class _DecksEditPageState extends State<DecksEditPage> {
           ],
         ),
       ),
-      // Add a new expansion tile to add a new card
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final newCard = CardEntity(front: '', back: '', deckId: widget.deck.id);
