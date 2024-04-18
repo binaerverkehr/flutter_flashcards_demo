@@ -16,21 +16,20 @@ class DecksPlayPage extends StatefulWidget {
 }
 
 class _DecksPlayPageState extends State<DecksPlayPage> {
-  // PageViewController
   late PageController _pageController;
 
-  // Current index
   int currentIndex = 0;
 
   @override
   void initState() {
-    //deck = ref.read(decksRepositoryProvider).playDeck(widget.deckId);
+    // Initialize the page controller with the current index
     _pageController = PageController(initialPage: currentIndex);
     super.initState();
   }
 
   @override
   void dispose() {
+    // Dispose the page controller
     _pageController.dispose();
     super.dispose();
   }
