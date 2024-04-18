@@ -23,7 +23,12 @@ class DecksListPage extends StatelessWidget {
             const Row(
               children: [
                 Text(' Welcome ', style: TextStyle(fontSize: 32)),
-                Text("User", style: TextStyle(fontSize: 32, color: Colors.purple, fontWeight: FontWeight.bold)),
+                Text("User",
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.purple,
+                      fontWeight: FontWeight.bold,
+                    )),
               ],
             ),
             const Row(
