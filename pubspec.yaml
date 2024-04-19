@@ -25,6 +25,8 @@ dependencies:
   isar_flutter_libs: ^4.0.0-dev.14
   # shared preferences
   shared_preferences: ^2.2.2
+  # json
+  json_annotation: ^4.8.1
   
 
 dev_dependencies:
@@ -38,6 +40,8 @@ dev_dependencies:
   riverpod_generator: ^2.3.11
   # freezed 
   freezed: ^2.4.7
+  # json
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true
