@@ -22,8 +22,6 @@ dependencies:
   # database
   isar: ^4.0.0-dev.14
   isar_flutter_libs: ^4.0.0-dev.14
-  # shared preferences
-  shared_preferences: ^2.2.2
   # json serialization
   json_annotation: ^4.8.1
   
