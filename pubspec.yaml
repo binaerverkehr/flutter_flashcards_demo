@@ -14,7 +14,7 @@ dependencies:
   # state management
   flutter_riverpod: ^2.4.10
   riverpod_annotation: ^2.3.4
-  # freezed data classes and json serialization
+  # freezed data classes
   freezed_annotation: ^2.4.1
   # path
   path_provider: ^2.1.2 
@@ -24,7 +24,7 @@ dependencies:
   isar_flutter_libs: ^4.0.0-dev.14
   # shared preferences
   shared_preferences: ^2.2.2
-  # json
+  # json serialization
   json_annotation: ^4.8.1
   
 
@@ -37,9 +37,9 @@ dev_dependencies:
   # state management
   riverpod_lint: ^2.3.9
   riverpod_generator: ^2.3.11
-  # freezed 
+  # freezed data classes
   freezed: ^2.4.7
-  # json
+  # json serialization
   json_serializable: ^6.7.1
 
 flutter:
