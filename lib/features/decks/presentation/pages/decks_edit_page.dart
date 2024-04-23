@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernkarten_app_test/core/utils/test_data.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/card_entity.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/deck_entity.dart';
+import 'package:flutter_lernkarten_app_test/features/decks/presentation/controllers/decks_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DecksEditPage extends StatefulWidget {
+class DecksEditPage extends ConsumerStatefulWidget {
   const DecksEditPage({
     Key? key,
     required this.deck,
@@ -12,10 +13,10 @@ class DecksEditPage extends StatefulWidget {
   final DeckEntity deck;
 
   @override
-  State<DecksEditPage> createState() => _DecksEditPageState();
+  ConsumerState<DecksEditPage> createState() => _DecksEditPageState();
 }
 
-class _DecksEditPageState extends State<DecksEditPage> {
+class _DecksEditPageState extends ConsumerState<DecksEditPage> {
   late TextEditingController _deckNameController;
   late List<CardEntity> _cards;
 
@@ -97,11 +98,7 @@ class _DecksEditPageState extends State<DecksEditPage> {
                 );
 
                 // Update the deck in the kTestDeckList
-                final index = kTestDeckList.indexWhere((deck) => deck.id == widget.deck.id);
-                kTestDeckList[index] = newDeck;
-
-                // Go back to the previous page
-                Navigator.of(context).pop();
+                await ref.read(updateDeckProvider(newDeck).future).then((value) => Navigator.pop(context));
               }
             },
             icon: const Icon(Icons.save),

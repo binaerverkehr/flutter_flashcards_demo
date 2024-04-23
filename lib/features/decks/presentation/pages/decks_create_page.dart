@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernkarten_app_test/core/utils/test_data.dart';
+import 'package:flutter_lernkarten_app_test/features/decks/data/data_sources/local/decks_database.dart';
+import 'package:flutter_lernkarten_app_test/features/decks/data/models/deck_model.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/card_entity.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/deck_entity.dart';
+import 'package:flutter_lernkarten_app_test/features/decks/presentation/controllers/decks_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DecksCreatePage extends StatefulWidget {
+class DecksCreatePage extends ConsumerStatefulWidget {
   const DecksCreatePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<DecksCreatePage> createState() => _DecksCreatePageState();
+  ConsumerState<DecksCreatePage> createState() => _DecksCreatePageState();
 }
 
-class _DecksCreatePageState extends State<DecksCreatePage> {
+class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
   late TextEditingController _deckNameController;
   late List<CardEntity> _cards;
 
@@ -73,7 +76,8 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                 final cards = <CardEntity>[];
 
                 // Get the id for the new deck
-                final newDeckId = kTestDeckList.length + 1;
+                final decksDatabase = ref.read(decksDatabaseProvider);
+                final newDeckId = decksDatabase.isar.deckModels.autoIncrement();
 
                 // Add the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
@@ -93,10 +97,9 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                 );
 
                 // Add the new deck to the list of decks
-                kTestDeckList.add(newDeck);
-
-                // Navigate back to the deck list page
-                Navigator.of(context).pop();
+                await ref.read(addDeckProvider(newDeck).future).then(
+                      (value) => Navigator.pop(context),
+                    );
               }
             },
             icon: const Icon(Icons.save),

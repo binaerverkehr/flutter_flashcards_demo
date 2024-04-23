@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernkarten_app_test/core/utils/test_data.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/deck_entity.dart';
+import 'package:flutter_lernkarten_app_test/features/decks/presentation/controllers/decks_controller.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/presentation/pages/decks_edit_page.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/presentation/pages/decks_play_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SelectableDeckTile extends StatelessWidget {
   const SelectableDeckTile({
@@ -89,20 +90,24 @@ class SelectableDeckTile extends StatelessWidget {
                               },
                               child: const Text('Cancel'),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                // Delete the deck
-                                kTestDeckList.remove(deck);
+                            Consumer(
+                              builder: (context, ref, child) {
+                                return TextButton(
+                                  onPressed: () {
+                                    // Delete the deck
+                                    ref.read(deleteDeckByIdProvider(deck.id));
 
-                                Navigator.pop(context);
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
                               },
-                              child: const Text(
-                                'Delete',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                             ),
                           ],
                         );
