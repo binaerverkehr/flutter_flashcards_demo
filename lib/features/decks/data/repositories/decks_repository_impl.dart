@@ -2,6 +2,9 @@ import 'package:flutter_lernkarten_app_test/features/decks/data/data_sources/loc
 import 'package:flutter_lernkarten_app_test/features/decks/data/models/deck_model.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/deck_entity.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/repositories/decks_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'decks_repository_impl.g.dart';
 
 class DecksRepositoryImpl implements DecksRepository {
   final DecksDatabase _decksDatabase;
@@ -32,4 +35,10 @@ class DecksRepositoryImpl implements DecksRepository {
   Stream<List<DeckEntity>> watchDecks() {
     return _decksDatabase.watchDecks();
   }
+}
+
+@riverpod
+DecksRepository decksRepository(DecksRepositoryRef ref) {
+  final decksDatabase = ref.watch(decksDatabaseProvider);
+  return DecksRepositoryImpl(decksDatabase);
 }

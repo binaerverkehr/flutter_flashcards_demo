@@ -2,6 +2,9 @@ import 'package:flutter_lernkarten_app_test/features/decks/data/models/card_mode
 import 'package:flutter_lernkarten_app_test/features/decks/data/models/deck_model.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'decks_database.g.dart';
 
 class DecksDatabase {
   DecksDatabase._privateConstructor();
@@ -90,4 +93,9 @@ class DecksDatabase {
   Future<void> close() async {
     _isar.close();
   }
+}
+
+@Riverpod(keepAlive: true)
+DecksDatabase decksDatabase(DecksDatabaseRef ref) {
+  return DecksDatabase();
 }
