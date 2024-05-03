@@ -24,23 +24,14 @@ mixin _$DeckEntity {
 /// @nodoc
 
 class _$DeckEntityImpl implements _DeckEntity {
-  _$DeckEntityImpl(
-      {required this.id,
-      required this.name,
-      required final List<CardEntity> cards})
-      : _cards = cards;
+  _$DeckEntityImpl({required this.id, required this.name, required this.cards});
 
   @override
   final int id;
   @override
   final String name;
-  final List<CardEntity> _cards;
   @override
-  List<CardEntity> get cards {
-    if (_cards is EqualUnmodifiableListView) return _cards;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cards);
-  }
+  final List<CardEntity> cards;
 
   @override
   String toString() {
@@ -54,12 +45,12 @@ class _$DeckEntityImpl implements _DeckEntity {
             other is _$DeckEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._cards, _cards));
+            const DeepCollectionEquality().equals(other.cards, cards));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_cards));
+      runtimeType, id, name, const DeepCollectionEquality().hash(cards));
 }
 
 abstract class _DeckEntity implements DeckEntity {

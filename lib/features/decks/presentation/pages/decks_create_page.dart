@@ -72,12 +72,16 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
                   const SnackBar(content: Text('The deck must have a name')),
                 );
               } else {
-                // Create an empty list of cards
-                final cards = <CardEntity>[];
-
                 // Get the id for the new deck
                 final decksDatabase = ref.read(decksDatabaseProvider);
                 final newDeckId = decksDatabase.isar.deckModels.autoIncrement();
+
+                // Create a new deck with the updated name and cards
+                final newDeck = DeckEntity(
+                  id: newDeckId,
+                  name: _deckNameController.text,
+                  cards: [],
+                );
 
                 // Add the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
@@ -86,15 +90,8 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
                     front: frontControllers[i].text,
                     back: backControllers[i].text,
                   );
-                  cards.add(cardEntity);
+                  newDeck.addCard(cardEntity);
                 }
-
-                // Create a new deck with the updated name and cards
-                final newDeck = DeckEntity(
-                  id: newDeckId,
-                  name: _deckNameController.text,
-                  cards: cards,
-                );
 
                 // Add the new deck to the list of decks
                 await ref.read(addDeckProvider(newDeck).future).then(
