@@ -16,10 +16,6 @@ const CardModelSchema = IsarGeneratedSchema(
     embedded: true,
     properties: [
       IsarPropertySchema(
-        name: 'deckId',
-        type: IsarType.long,
-      ),
-      IsarPropertySchema(
         name: 'front',
         type: IsarType.string,
       ),
@@ -38,22 +34,18 @@ const CardModelSchema = IsarGeneratedSchema(
 
 @isarProtected
 int serializeCardModel(IsarWriter writer, CardModel object) {
-  IsarCore.writeLong(writer, 1, object.deckId);
-  IsarCore.writeString(writer, 2, object.front);
-  IsarCore.writeString(writer, 3, object.back);
+  IsarCore.writeString(writer, 1, object.front);
+  IsarCore.writeString(writer, 2, object.back);
   return 0;
 }
 
 @isarProtected
 CardModel deserializeCardModel(IsarReader reader) {
-  final int _deckId;
-  _deckId = IsarCore.readLong(reader, 1);
   final String _front;
-  _front = IsarCore.readString(reader, 2) ?? '';
+  _front = IsarCore.readString(reader, 1) ?? '';
   final String _back;
-  _back = IsarCore.readString(reader, 3) ?? '';
+  _back = IsarCore.readString(reader, 2) ?? '';
   final object = CardModel(
-    deckId: _deckId,
     front: _front,
     back: _back,
   );
@@ -62,88 +54,6 @@ CardModel deserializeCardModel(IsarReader reader) {
 
 extension CardModelQueryFilter
     on QueryBuilder<CardModel, CardModel, QFilterCondition> {
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition> deckIdEqualTo(
-    int value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        EqualCondition(
-          property: 1,
-          value: value,
-        ),
-      );
-    });
-  }
-
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition> deckIdGreaterThan(
-    int value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        GreaterCondition(
-          property: 1,
-          value: value,
-        ),
-      );
-    });
-  }
-
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition>
-      deckIdGreaterThanOrEqualTo(
-    int value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        GreaterOrEqualCondition(
-          property: 1,
-          value: value,
-        ),
-      );
-    });
-  }
-
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition> deckIdLessThan(
-    int value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        LessCondition(
-          property: 1,
-          value: value,
-        ),
-      );
-    });
-  }
-
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition>
-      deckIdLessThanOrEqualTo(
-    int value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        LessOrEqualCondition(
-          property: 1,
-          value: value,
-        ),
-      );
-    });
-  }
-
-  QueryBuilder<CardModel, CardModel, QAfterFilterCondition> deckIdBetween(
-    int lower,
-    int upper,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        BetweenCondition(
-          property: 1,
-          lower: lower,
-          upper: upper,
-        ),
-      );
-    });
-  }
-
   QueryBuilder<CardModel, CardModel, QAfterFilterCondition> frontEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -151,7 +61,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -166,7 +76,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -182,7 +92,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -197,7 +107,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -213,7 +123,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -229,7 +139,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 2,
+          property: 1,
           lower: lower,
           upper: upper,
           caseSensitive: caseSensitive,
@@ -245,7 +155,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         StartsWithCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -260,7 +170,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EndsWithCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -274,7 +184,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
-          property: 2,
+          property: 1,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -288,7 +198,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
-          property: 2,
+          property: 1,
           wildcard: pattern,
           caseSensitive: caseSensitive,
         ),
@@ -300,7 +210,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
-          property: 2,
+          property: 1,
           value: '',
         ),
       );
@@ -311,7 +221,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
-          property: 2,
+          property: 1,
           value: '',
         ),
       );
@@ -325,7 +235,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EqualCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -340,7 +250,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -356,7 +266,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         GreaterOrEqualCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -371,7 +281,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -387,7 +297,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         LessOrEqualCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -403,7 +313,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         BetweenCondition(
-          property: 3,
+          property: 2,
           lower: lower,
           upper: upper,
           caseSensitive: caseSensitive,
@@ -419,7 +329,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         StartsWithCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -434,7 +344,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         EndsWithCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -448,7 +358,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         ContainsCondition(
-          property: 3,
+          property: 2,
           value: value,
           caseSensitive: caseSensitive,
         ),
@@ -462,7 +372,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         MatchesCondition(
-          property: 3,
+          property: 2,
           wildcard: pattern,
           caseSensitive: caseSensitive,
         ),
@@ -474,7 +384,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const EqualCondition(
-          property: 3,
+          property: 2,
           value: '',
         ),
       );
@@ -485,7 +395,7 @@ extension CardModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         const GreaterCondition(
-          property: 3,
+          property: 2,
           value: '',
         ),
       );

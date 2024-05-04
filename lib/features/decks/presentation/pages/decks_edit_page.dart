@@ -83,7 +83,6 @@ class _DecksEditPageState extends ConsumerState<DecksEditPage> {
                 // Add all the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
                   final cardEntity = CardEntity(
-                    deckId: deckId,
                     front: frontControllers[i].text,
                     back: backControllers[i].text,
                   );
@@ -133,7 +132,7 @@ class _DecksEditPageState extends ConsumerState<DecksEditPage> {
                   final hasEmptyFields = frontTextIsEmpty || backTextIsEmpty;
 
                   return Dismissible(
-                    key: Key("${_cards[index].deckId} $index ${_cards[index].front} ${_cards[index].back}"),
+                    key: Key("${_cards[index]} $index ${_cards[index].front} ${_cards[index].back}"),
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
                       setState(() {
@@ -156,7 +155,7 @@ class _DecksEditPageState extends ConsumerState<DecksEditPage> {
                           ),
                           1,
                         ),
-                        key: ValueKey(_cards[index].deckId + index),
+                        key: ValueKey(_cards[index].toString() + index.toString()),
                         title: Text(
                           'Card ${index + 1}',
                           style: TextStyle(color: hasEmptyFields ? Colors.red : null),
@@ -263,7 +262,7 @@ class _DecksEditPageState extends ConsumerState<DecksEditPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final newCard = CardEntity(front: '', back: '', deckId: widget.deck.id);
+          final newCard = CardEntity(front: '', back: '');
 
           setState(() {
             _cards = [..._cards, newCard];

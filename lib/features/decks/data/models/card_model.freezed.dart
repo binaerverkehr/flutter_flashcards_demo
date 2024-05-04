@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CardModel {
-  int get deckId => throw _privateConstructorUsedError;
   String get front => throw _privateConstructorUsedError;
   String get back => throw _privateConstructorUsedError;
 
@@ -30,7 +29,7 @@ abstract class $CardModelCopyWith<$Res> {
   factory $CardModelCopyWith(CardModel value, $Res Function(CardModel) then) =
       _$CardModelCopyWithImpl<$Res, CardModel>;
   @useResult
-  $Res call({int deckId, String front, String back});
+  $Res call({String front, String back});
 }
 
 /// @nodoc
@@ -46,15 +45,10 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? deckId = null,
     Object? front = null,
     Object? back = null,
   }) {
     return _then(_value.copyWith(
-      deckId: null == deckId
-          ? _value.deckId
-          : deckId // ignore: cast_nullable_to_non_nullable
-              as int,
       front: null == front
           ? _value.front
           : front // ignore: cast_nullable_to_non_nullable
@@ -75,7 +69,7 @@ abstract class _$$CardModelImplCopyWith<$Res>
       __$$CardModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int deckId, String front, String back});
+  $Res call({String front, String back});
 }
 
 /// @nodoc
@@ -89,15 +83,10 @@ class __$$CardModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? deckId = null,
     Object? front = null,
     Object? back = null,
   }) {
     return _then(_$CardModelImpl(
-      deckId: null == deckId
-          ? _value.deckId
-          : deckId // ignore: cast_nullable_to_non_nullable
-              as int,
       front: null == front
           ? _value.front
           : front // ignore: cast_nullable_to_non_nullable
@@ -113,12 +102,8 @@ class __$$CardModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CardModelImpl extends _CardModel {
-  _$CardModelImpl(
-      {required this.deckId, required this.front, required this.back})
-      : super._();
+  _$CardModelImpl({required this.front, required this.back}) : super._();
 
-  @override
-  final int deckId;
   @override
   final String front;
   @override
@@ -126,7 +111,7 @@ class _$CardModelImpl extends _CardModel {
 
   @override
   String toString() {
-    return 'CardModel(deckId: $deckId, front: $front, back: $back)';
+    return 'CardModel(front: $front, back: $back)';
   }
 
   @override
@@ -134,13 +119,12 @@ class _$CardModelImpl extends _CardModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardModelImpl &&
-            (identical(other.deckId, deckId) || other.deckId == deckId) &&
             (identical(other.front, front) || other.front == front) &&
             (identical(other.back, back) || other.back == back));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, deckId, front, back);
+  int get hashCode => Object.hash(runtimeType, front, back);
 
   @JsonKey(ignore: true)
   @override
@@ -151,13 +135,10 @@ class _$CardModelImpl extends _CardModel {
 
 abstract class _CardModel extends CardModel {
   factory _CardModel(
-      {required final int deckId,
-      required final String front,
+      {required final String front,
       required final String back}) = _$CardModelImpl;
   _CardModel._() : super._();
 
-  @override
-  int get deckId;
   @override
   String get front;
   @override

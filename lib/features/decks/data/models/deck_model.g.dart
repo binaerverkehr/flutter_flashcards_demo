@@ -76,7 +76,6 @@ DeckModel deserializeDeckModel(IsarReader reader) {
         final list = List<CardModel>.filled(
             length,
             CardModel(
-              deckId: -9223372036854775808,
               front: '',
               back: '',
             ),
@@ -86,7 +85,6 @@ DeckModel deserializeDeckModel(IsarReader reader) {
             final objectReader = IsarCore.readObject(reader, i);
             if (objectReader.isNull) {
               list[i] = CardModel(
-                deckId: -9223372036854775808,
                 front: '',
                 back: '',
               );
@@ -128,7 +126,6 @@ dynamic deserializeDeckModelProp(IsarReader reader, int property) {
             final list = List<CardModel>.filled(
                 length,
                 CardModel(
-                  deckId: -9223372036854775808,
                   front: '',
                   back: '',
                 ),
@@ -138,7 +135,6 @@ dynamic deserializeDeckModelProp(IsarReader reader, int property) {
                 final objectReader = IsarCore.readObject(reader, i);
                 if (objectReader.isNull) {
                   list[i] = CardModel(
-                    deckId: -9223372036854775808,
                     front: '',
                     back: '',
                   );

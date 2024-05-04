@@ -9,7 +9,6 @@ part 'card_model.g.dart';
 @Embedded(ignore: {'copyWith', 'toEntity', 'fromEntity'})
 class CardModel with _$CardModel implements CardEntity {
   factory CardModel({
-    required int deckId,
     required String front,
     required String back,
   }) = _CardModel;
@@ -18,7 +17,6 @@ class CardModel with _$CardModel implements CardEntity {
 
   factory CardModel.fromEntity(CardEntity entity) {
     return CardModel(
-      deckId: entity.deckId,
       front: entity.front,
       back: entity.back,
     );
@@ -26,7 +24,6 @@ class CardModel with _$CardModel implements CardEntity {
 
   CardEntity toEntity() {
     return CardEntity(
-      deckId: deckId,
       front: front,
       back: back,
     );

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernkarten_app_test/features/decks/data/data_sources/local/decks_database.dart';
-import 'package:flutter_lernkarten_app_test/features/decks/data/models/deck_model.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/card_entity.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/domain/entities/deck_entity.dart';
 import 'package:flutter_lernkarten_app_test/features/decks/presentation/controllers/decks_controller.dart';
@@ -72,13 +70,9 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
                   const SnackBar(content: Text('The deck must have a name')),
                 );
               } else {
-                // Get the id for the new deck
-                final decksDatabase = ref.read(decksDatabaseProvider);
-                final newDeckId = decksDatabase.isar.deckModels.autoIncrement();
-
                 // Create a new deck with the updated name and cards
                 final newDeck = DeckEntity(
-                  id: newDeckId,
+                  id: 0,
                   name: _deckNameController.text,
                   cards: [],
                 );
@@ -86,7 +80,6 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
                 // Add the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
                   final cardEntity = CardEntity(
-                    deckId: newDeckId,
                     front: frontControllers[i].text,
                     back: backControllers[i].text,
                   );
@@ -132,7 +125,7 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
 
                   return Dismissible(
                     // key using the id of the card
-                    key: ValueKey(_cards[index].deckId.toString() + index.toString()),
+                    key: ValueKey(_cards[index].toString() + index.toString()),
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
                       setState(() {
@@ -155,7 +148,7 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
                           ),
                           1,
                         ),
-                        key: ValueKey(_cards[index].deckId + index),
+                        key: ValueKey(_cards[index].toString() + index.toString()),
                         title: Text(
                           'Card ${index + 1}',
                           style: TextStyle(color: hasEmptyFields ? Colors.red : null),
@@ -263,7 +256,7 @@ class _DecksCreatePageState extends ConsumerState<DecksCreatePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _cards.add(CardEntity(front: '', back: '', deckId: _cards.length + 1));
+            _cards.add(CardEntity(front: '', back: ''));
             frontControllers.add(TextEditingController());
             backControllers.add(TextEditingController());
           });
