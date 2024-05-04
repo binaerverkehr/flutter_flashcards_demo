@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CardEntity {
-  int get deckId => throw _privateConstructorUsedError;
   String get front => throw _privateConstructorUsedError;
   String get back => throw _privateConstructorUsedError;
 }
@@ -24,11 +23,8 @@ mixin _$CardEntity {
 /// @nodoc
 
 class _$CardEntityImpl implements _CardEntity {
-  _$CardEntityImpl(
-      {required this.deckId, required this.front, required this.back});
+  _$CardEntityImpl({required this.front, required this.back});
 
-  @override
-  final int deckId;
   @override
   final String front;
   @override
@@ -36,7 +32,7 @@ class _$CardEntityImpl implements _CardEntity {
 
   @override
   String toString() {
-    return 'CardEntity(deckId: $deckId, front: $front, back: $back)';
+    return 'CardEntity(front: $front, back: $back)';
   }
 
   @override
@@ -44,23 +40,19 @@ class _$CardEntityImpl implements _CardEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardEntityImpl &&
-            (identical(other.deckId, deckId) || other.deckId == deckId) &&
             (identical(other.front, front) || other.front == front) &&
             (identical(other.back, back) || other.back == back));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, deckId, front, back);
+  int get hashCode => Object.hash(runtimeType, front, back);
 }
 
 abstract class _CardEntity implements CardEntity {
   factory _CardEntity(
-      {required final int deckId,
-      required final String front,
+      {required final String front,
       required final String back}) = _$CardEntityImpl;
 
-  @override
-  int get deckId;
   @override
   String get front;
   @override
