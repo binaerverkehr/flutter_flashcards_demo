@@ -78,7 +78,6 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                 // Add the cards to the list
                 for (var i = 0; i < frontControllers.length; i++) {
                   final cardEntity = CardEntity(
-                    deckId: newDeckId,
                     front: frontControllers[i].text,
                     back: backControllers[i].text,
                   );
@@ -132,7 +131,7 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
 
                   return Dismissible(
                     // key using the id of the card
-                    key: ValueKey(_cards[index].deckId.toString() + index.toString()),
+                    key: ValueKey(_cards[index].toString() + index.toString()),
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
                       setState(() {
@@ -155,7 +154,7 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
                           ),
                           1,
                         ),
-                        key: ValueKey(_cards[index].deckId + index),
+                        key: ValueKey(_cards[index].toString() + index.toString()),
                         title: Text(
                           'Card ${index + 1}',
                           style: TextStyle(color: hasEmptyFields ? Colors.red : null),
@@ -263,7 +262,7 @@ class _DecksCreatePageState extends State<DecksCreatePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _cards.add(CardEntity(front: '', back: '', deckId: _cards.length + 1));
+            _cards.add(CardEntity(front: '', back: ''));
             frontControllers.add(TextEditingController());
             backControllers.add(TextEditingController());
           });
