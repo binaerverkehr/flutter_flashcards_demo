@@ -13,6 +13,9 @@ class DecksListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final decksStreamValue = ref.watch(decksStreamProvider);
 
+    // Get current screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return decksStreamValue.when(
       data: (decks) => Scaffold(
         appBar: AppBar(
@@ -49,8 +52,9 @@ class DecksListPage extends ConsumerWidget {
               Expanded(
                 child: GridView.builder(
                   itemCount: decks.length + 1,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    // Dependend on screenWidth, we want to show 1 or 2 cards in a row
+                    crossAxisCount: screenWidth > 400 ? 2 : 1,
                   ),
                   itemBuilder: (context, index) {
                     if (index == 0 || decks.isEmpty) {
