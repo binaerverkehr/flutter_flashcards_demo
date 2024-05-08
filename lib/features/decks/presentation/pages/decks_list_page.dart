@@ -21,21 +21,28 @@ class DecksListPage extends ConsumerWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              const Wrap(
                 children: [
-                  Text(' Welcome ', style: TextStyle(fontSize: 32)),
-                  Text("User",
-                      style: TextStyle(
-                        fontSize: 32,
-                        color: Colors.purple,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Flexible(
+                      child: Text(
+                    'Welcome ',
+                    style: TextStyle(fontSize: 32),
+                  )),
+                  Flexible(
+                    child: Text("User",
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
                 ],
               ),
               const Row(
                 children: [
-                  Flexible(child: Text(' to your flashcard decks!', style: TextStyle(fontSize: 24))),
+                  Flexible(child: Text('to your flashcard decks!', style: TextStyle(fontSize: 24))),
                 ],
               ),
               const SizedBox(height: 20),
