@@ -35,7 +35,7 @@ class DecksListPage extends ConsumerWidget {
               ),
               const Row(
                 children: [
-                  Text(' to your flashcard decks!', style: TextStyle(fontSize: 32)),
+                  Flexible(child: Text(' to your flashcard decks!', style: TextStyle(fontSize: 24))),
                 ],
               ),
               const SizedBox(height: 20),
