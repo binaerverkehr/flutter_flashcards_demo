@@ -51,7 +51,7 @@ class DecksListPage extends ConsumerWidget {
                   itemCount: decks.length + 1,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     // Dependend on screenWidth, we want to show 1 or 2 cards in a row
-                    crossAxisCount: screenWidth > 400 ? 2 : 1,
+                    crossAxisCount: screenWidth > 350 ? 2 : 1,
                   ),
                   itemBuilder: (context, index) {
                     if (index == 0 || decks.isEmpty) {
