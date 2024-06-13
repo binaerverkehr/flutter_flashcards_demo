@@ -28,19 +28,16 @@ class DecksListPage extends ConsumerWidget {
             children: [
               const Wrap(
                 children: [
-                  Flexible(
-                      child: Text(
+                  Text(
                     'Welcome ',
                     style: TextStyle(fontSize: 32),
-                  )),
-                  Flexible(
-                    child: Text("User",
-                        style: TextStyle(
-                          fontSize: 32,
-                          color: Colors.purple,
-                          fontWeight: FontWeight.bold,
-                        )),
                   ),
+                  Text("User",
+                      style: TextStyle(
+                        fontSize: 32,
+                        color: Colors.purple,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ],
               ),
               const Row(
